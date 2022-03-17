@@ -1,31 +1,29 @@
 package com.tbuonomo.dotsindicatorsample.viewpager
 
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import com.tbuonomo.dotsindicatorsample.BaseActivity
 import com.tbuonomo.dotsindicatorsample.R
-import kotlinx.android.synthetic.main.activity_view_pager.dots_indicator
-import kotlinx.android.synthetic.main.activity_view_pager.spring_dots_indicator
-import kotlinx.android.synthetic.main.activity_view_pager.view_pager
-import kotlinx.android.synthetic.main.activity_view_pager.worm_dots_indicator
+import com.tbuonomo.dotsindicatorsample.databinding.ActivityViewPagerBinding
 
-class ViewPagerActivity : AppCompatActivity() {
+class ViewPagerActivity : BaseActivity<ActivityViewPagerBinding>() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    requestWindowFeature(Window.FEATURE_NO_TITLE)
-    window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN)
-    setContentView(R.layout.activity_view_pager)
-
-    with(view_pager) {
-      adapter = DotIndicatorPagerAdapter()
-      setPageTransformer(true, ZoomOutPageTransformer())
-
-      dots_indicator.setViewPager(this)
-      spring_dots_indicator.setViewPager(this)
-      worm_dots_indicator.setViewPager(this)
+    override fun getViewBinding(): ActivityViewPagerBinding {
+        return ActivityViewPagerBinding.inflate(layoutInflater)
     }
-  }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        setContentView(R.layout.activity_view_pager)
+
+        with(binding.viewPager) {
+            adapter = DotIndicatorPagerAdapter()
+            setPageTransformer(true, ZoomOutPageTransformer())
+
+            binding.dotsIndicator.setViewPager(this)
+            binding.springDotsIndicator.setViewPager(this)
+            binding.wormDotsIndicator.setViewPager(this)
+        }
+    }
 }

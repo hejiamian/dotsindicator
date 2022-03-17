@@ -3,4 +3,10 @@
   <string name="dots_indicator">DotsIndicator</string>
   <string name="spring_dots_indicator">SpringDotsIndicator</string>
   <string name="worm_dots_indicator">WormDotsIndicator</string>
+
+  <string name="home">Home</string>
+  <string name="news">News</string>
+  <string name="assets">Assets</string>
+  <string name="trade">Trade</string>
+
 </resources>
